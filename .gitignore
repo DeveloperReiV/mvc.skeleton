@@ -1,0 +1,4 @@
+.idea
+application/error.log
+/composer/composer.phar
+/composer/vendor/
