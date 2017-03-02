@@ -1,6 +1,8 @@
 <?php
 
-class Error extends ErrorException
+namespace application\core\lib;
+
+class Error extends \ErrorException
 {
 	//получить информацию об ошибке
 	private function getErrorInfo()

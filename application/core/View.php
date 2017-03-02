@@ -1,5 +1,9 @@
 <?php
 
+namespace application\core;
+
+use application\core\lib;
+
 class View
 {
 	protected $data = [ ];    //массив данных
@@ -33,7 +37,7 @@ class View
 		}
 		else
 		{
-			throw new Exception( "Шаблон $template не найден" );
+			throw new \Exception( "Шаблон $template не найден" );
 		}
 	}
 
@@ -44,9 +48,9 @@ class View
 		{
 			echo $this->render( $template );
 		}
-		catch(Exception $exp)
+		catch(\Exception $exp)
 		{
-			$err = new Error( $exp->getMessage() );
+			$err = new lib\Error( $exp->getMessage() );
 			$err->writeLog();
 		}
 	}
