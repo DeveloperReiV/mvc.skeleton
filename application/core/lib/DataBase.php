@@ -21,7 +21,7 @@ class DataBase
 		catch( \PDOException $exp )
 		{
 			$err = new Error( 'Ошибка поключения к базе данных ' . $exp->getMessage() );
-			$err->writeLog();
+			$err->showError();
 		}
 	}
 
