@@ -41,6 +41,7 @@ abstract class Model
 	 * Получить все записи из таблицы
 	 *
 	 * @access public
+	 * @throws \Exception
 	 *
 	 * @return object - результат запроса как объект класса запрашиваемых данных
 	 */
@@ -50,6 +51,11 @@ abstract class Model
 		$db->setClassName( get_called_class() );
 		$sql    = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
 		$result = $db->query( $sql );
+
+		if( empty( $result ) )
+		{
+			throw new lib\Exception404( 'Ошибка выполнения запроса', 400 );
+		}
 
 		return $result;
 	}

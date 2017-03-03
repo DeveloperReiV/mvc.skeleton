@@ -11,8 +11,16 @@ class User extends core\Controller
 {
 	public function action_index()
 	{
-		$views        = new core\View();
-		$views->users = models\User::getAll();
-		$views->display( 'user\user.php' );
+		try
+		{
+			$views        = new core\View();
+			$views->users = models\User::getAll();
+			$views->display( 'user\user.php' );
+		}
+		catch(lib\Exception404 $exp)
+		{
+			$err = new lib\Error( $exp->getMessage(), 400 );
+			$err->show();
+		}
 	}
 }

@@ -43,7 +43,7 @@ class Route
 			}
 			else
 			{
-				throw new \Exception( "Контроллер $controller_name не найден" );
+				throw new lib\Exception404( "Контроллер $controller_name не найден" );
 			}
 
 			// создаем контроллер
@@ -57,7 +57,7 @@ class Route
 			}
 			else
 			{
-				throw new \Exception( "Экшен $action не найден в контроллере $controller_name" );
+				throw new lib\Exception404( "Метод $action не найден в классе-контроллере $controller_name" );
 			}
 		}
 	}

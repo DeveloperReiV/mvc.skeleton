@@ -7,20 +7,30 @@ use application\core;
 
 class Error extends \ErrorException
 {
+	public $code;
+	public $file;
+	public $line;
+	public $message;
+
+	public function __construct( $message = null, $code = null )
+	{
+		$this->message = $message;
+		$this->code    = $code;
+	}
+
 	/**
 	 * Формирует информацию об ошибке
 	 * @access private
 	 *
 	 * @return array - информацию об ошибке
 	 */
-	private function getErrorInfo()
+	private function getInfo()
 	{
-		return [
-			'message'  => str_pad( (string) $this->message, 100 ),
-			'filename' => str_pad( (string) $this->file, 100 ),
-			'line'     => str_pad( (string) $this->line, 5 ),
-			'time'     => date( 'd-m-Y G:i:s' ),
-		];
+		return 'Message: ' . $this->message . '  ' .
+		'Code: ' . $this->code . '  ' .
+		'File: ' . $this->file . '  ' .
+		'Line: ' . $this->line . '  ' .
+		'DataTime: ' . date( 'd-m-Y G:i:s' );
 	}
 
 	/**
@@ -33,7 +43,7 @@ class Error extends \ErrorException
 	public function writeLog()
 	{
 		$path = 'application/error.log';
-		$info = implode( ' ', $this->getErrorInfo() ) . " \n";
+		$info = $this->getInfo() . "\n";
 		$info = ( count( file( $path ) ) + 1 ) . "  " . $info;
 		$text = null;
 
@@ -51,11 +61,11 @@ class Error extends \ErrorException
 	 * Записывает данные об ошибке в журнал и отображает страницу ошибки
 	 * @access public
 	 */
-	public function showError()
+	public function show()
 	{
 		$this->writeLog();
 		$view = new core\View();
-		$view->display('error/error404.php');
+		$view->display( 'error/error404.php' );
 	}
 
 

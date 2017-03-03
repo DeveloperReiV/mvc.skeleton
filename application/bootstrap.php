@@ -14,10 +14,10 @@ try
 {
 	core\Route::start();
 }
-catch( Exception $exp )
+catch( lib\Exception404 $exp )
 {
-	$err = new lib\Error( $exp->getMessage() );
-	$err->showError();
+	$err = new lib\Error( $exp->getMessage(), 404 );
+	$err->show();
 }
 
 

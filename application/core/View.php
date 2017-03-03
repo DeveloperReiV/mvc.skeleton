@@ -27,7 +27,7 @@ class View
 	 *
 	 * @param $template - имя шаблона
 	 * @access public
-	 * @throws \Exception
+	 * @throws lib\Exception404
 	 *
 	 * @return string - фозвращает содержимое шаблона из буфера данных
 	 */
@@ -49,7 +49,7 @@ class View
 		}
 		else
 		{
-			throw new \Exception( "Шаблон $template не найден" );
+			throw new lib\Exception404( "Шаблон $template не найден" );
 		}
 	}
 
@@ -65,10 +65,10 @@ class View
 		{
 			echo $this->render( $template );
 		}
-		catch( \Exception $exp )
+		catch( lib\Exception404 $exp )
 		{
-			$err = new lib\Error( $exp->getMessage() );
-			$err->showError();
+			$err = new lib\Error( $exp->getMessage(), 404 );
+			$err->show();
 		}
 	}
 

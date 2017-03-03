@@ -29,8 +29,8 @@ class DataBase
 		}
 		catch( \PDOException $exp )
 		{
-			$err = new Error( 'Ошибка поключения к базе данных ' . $exp->getMessage() );
-			$err->showError();
+			$err = new Error( 'Ошибка поключения к базе данных ' . $exp->getMessage(), 400 );
+			$err->show();
 		}
 	}
 
