@@ -2,9 +2,15 @@
 
 namespace application\core\lib;
 
+use application\core;
+
+
 class Error extends \ErrorException
 {
-	//получить информацию об ошибке
+	/**
+	 * Формирует информацию об ошибке
+	 * @return array - информацию об ошибке
+	 */
 	private function getErrorInfo()
 	{
 		return [
@@ -15,7 +21,10 @@ class Error extends \ErrorException
 		];
 	}
 
-	//запись ошибки в журнал
+	/**
+	 * Записывает данные об ошибке в журнал
+	 * @return int - колличество байт данных записанных в журнал
+	 */
 	public function writeLog()
 	{
 		$path = 'application/error.log';
@@ -31,6 +40,16 @@ class Error extends \ErrorException
 		$file = file_put_contents( $path, $text );            //записываем файл
 
 		return $file;
+	}
+
+	/**
+	 * Записывает данные об ошибке в журнал и отображает страницу ошибки
+	 */
+	public function showError()
+	{
+		$this->writeLog();
+		$view = new core\View();
+		$view->display('error/error404.php');
 	}
 
 
