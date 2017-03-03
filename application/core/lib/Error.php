@@ -9,6 +9,8 @@ class Error extends \ErrorException
 {
 	/**
 	 * Формирует информацию об ошибке
+	 * @access private
+	 *
 	 * @return array - информацию об ошибке
 	 */
 	private function getErrorInfo()
@@ -23,6 +25,9 @@ class Error extends \ErrorException
 
 	/**
 	 * Записывает данные об ошибке в журнал
+	 *
+	 * @access public
+	 *
 	 * @return int - колличество байт данных записанных в журнал
 	 */
 	public function writeLog()
@@ -44,6 +49,7 @@ class Error extends \ErrorException
 
 	/**
 	 * Записывает данные об ошибке в журнал и отображает страницу ошибки
+	 * @access public
 	 */
 	public function showError()
 	{

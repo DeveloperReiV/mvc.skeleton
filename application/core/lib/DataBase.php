@@ -9,7 +9,16 @@ namespace application\core\lib;
 
 class DataBase
 {
+	/**
+	 * @var \PDO - хранить экземпляр класса PDO для работы с базой данных
+	 * @access private
+	 */
 	private $dbh;
+
+	/**
+	 * @var string - хранит имя класса для возвращаемого объекта класса при работе с базой данных
+	 * @access private
+	 */
 	private $className = 'stdClass';
 
 	public function __construct( $host = DB_HOST, $dbname = DB_NAME, $user = DB_USER, $password = DB_PASSWORD )
@@ -26,9 +35,10 @@ class DataBase
 	}
 
 	/**
-	 * Задать имя класса объект которого необходимо вернуть как результат запроса
+	 * Задать имя класса объект которого необходимо вернуть как результат запроса к базе данных
 	 *
-	 * @param $className - имя класса
+	 * @param className - имя класса
+	 * @access public
 	 */
 	public function setClassName( $className )
 	{
@@ -40,8 +50,9 @@ class DataBase
 	 *
 	 * @param $statement    - запрос для выполнения
 	 * @param array $params - параметры запроса (необязательный параметр)
+	 * @access public
 	 *
-	 * @return mixed - результат запроса
+	 * @return object - объект класса соответствующий запрашиваемым данным
 	 */
 	public function query( $statement, $params = [ ] )
 	{

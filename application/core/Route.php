@@ -6,6 +6,13 @@ use application\controllers;
 
 class Route
 {
+	/**
+	 * Разбирает URL страницы на части для подключения контроллеров и выполнения соотведствующих методов
+	 *
+	 * @static
+	 * @access public
+	 * @throws \Exception
+	 */
 	public static function start()
 	{
 		$routes = parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH );       //получаем только путь из URL строки

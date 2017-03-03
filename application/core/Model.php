@@ -26,7 +26,11 @@ abstract class Model
 
 	/**
 	 * Получить имя таблицы данных
-	 * @return mixed - имя таблицы
+	 *
+	 * @access public
+	 * @static
+	 *
+	 * @return string - имя таблицы
 	 */
 	public static function getTableName()
 	{
@@ -35,7 +39,10 @@ abstract class Model
 
 	/**
 	 * Получить все записи из таблицы
-	 * @return mixed - результат запроса
+	 *
+	 * @access public
+	 *
+	 * @return object - результат запроса как объект класса запрашиваемых данных
 	 */
 	public static function getAll()
 	{

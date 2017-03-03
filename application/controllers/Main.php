@@ -10,9 +10,9 @@ class Main extends core\Controller
 {
 	public function action_index()
 	{
-		$view = new core\View();
+		$view       = new core\View();
 		$view->item = "Hello";
-		$view->display('/base.php');
+		$view->display( '/base.php' );
 	}
 
 }

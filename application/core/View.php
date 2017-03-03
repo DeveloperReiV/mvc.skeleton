@@ -6,6 +6,10 @@ use application\core\lib;
 
 class View
 {
+	/**
+	 * @var array массив данных для отправки в шаблон
+	 * @access protected
+	 */
 	protected $data = [ ];    //массив данных
 
 	public function __set( $name, $value )
@@ -20,10 +24,12 @@ class View
 
 	/**
 	 * Подготовка данных для вывода в шаблон
+	 *
 	 * @param $template - имя шаблона
+	 * @access public
+	 * @throws \Exception
 	 *
 	 * @return string - фозвращает содержимое шаблона из буфера данных
-	 * @throws \Exception - если шаблон не найден выкидывает исключение типа Exception
 	 */
 	public function render( $template )
 	{
@@ -49,6 +55,8 @@ class View
 
 	/**
 	 * Отображаем шаблон
+	 *
+	 * @access public
 	 * @param $template - шаблон данных
 	 */
 	public function display( $template )
