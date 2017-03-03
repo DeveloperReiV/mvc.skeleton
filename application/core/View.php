@@ -8,17 +8,23 @@ class View
 {
 	protected $data = [ ];    //массив данных
 
-	public function __set( $k, $v )
+	public function __set( $name, $value )
 	{
-		$this->data[ $k ] = $v;
+		$this->data[ $name ] = $value;
 	}
 
-	public function __get( $k )
+	public function __get( $name )
 	{
-		return $this->data[ $k ];
+		return $this->data[ $name ];
 	}
 
-	//подготовка данных для вывода в шаблон
+	/**
+	 * Подготовка данных для вывода в шаблон
+	 * @param $template - имя шаблона
+	 *
+	 * @return string - фозвращает содержимое шаблона из буфера данных
+	 * @throws \Exception - если шаблон не найден выкидывает исключение типа Exception
+	 */
 	public function render( $template )
 	{
 		$path = __DIR__ . '/../views/' . $template;
@@ -41,14 +47,17 @@ class View
 		}
 	}
 
-	//отображаем шаблон
+	/**
+	 * Отображаем шаблон
+	 * @param $template - шаблон данных
+	 */
 	public function display( $template )
 	{
 		try
 		{
 			echo $this->render( $template );
 		}
-		catch(\Exception $exp)
+		catch( \Exception $exp )
 		{
 			$err = new lib\Error( $exp->getMessage() );
 			$err->showError();
