@@ -1,6 +1,8 @@
 <?php include 'header.php' ?>
 
-<!-- Контент страницы-->
-<?=$item;?>
 
-<?php include 'footure.php'?>
+
+	<?=$item;?>
+
+
+<?php include 'footure.php' ?>
