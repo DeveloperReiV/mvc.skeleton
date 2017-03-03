@@ -51,7 +51,7 @@ class View
 		catch(\Exception $exp)
 		{
 			$err = new lib\Error( $exp->getMessage() );
-			$err->writeLog();
+			$err->showError();
 		}
 	}
 
