@@ -39,25 +39,36 @@ abstract class Model
 
 	/**
 	 * Получить все записи из таблицы
+	 * Возвращает все записи или false
+	 *
+	 * @param array $fields массив полей базы данных, которые необходимо вернуть
 	 *
 	 * @access public
 	 * @throws \Exception
 	 *
 	 * @return object - результат запроса как объект класса запрашиваемых данных
 	 */
-	public static function getAll()
+	public static function getAll( $fields = array() )
 	{
-		$db = new lib\DataBase();
-		$db->setClassName( get_called_class() );
-		$sql    = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
-		$result = $db->query( $sql );
-
-		if( empty( $result ) )
+		if( is_array( $fields ) )
 		{
-			throw new lib\Exception404( 'Ошибка выполнения запроса', 400 );
+			$db = new lib\DataBase();
+			$db->setClassName( get_called_class() );
+			$fld    = implode( ',', $fields );
+			$sql    = 'SELECT '.$fld.' FROM ' . static::$table . ' ORDER BY id DESC';
+			$result = $db->query( $sql );
+
+			if( empty( $result ) )
+			{
+				throw new lib\Exception404( 'Ошибка выполнения запроса', 400 );
+			}
+			else
+			{
+				return $result;
+			}
 		}
 
-		return $result;
+		return false;
 	}
 
 

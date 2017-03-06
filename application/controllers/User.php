@@ -14,10 +14,10 @@ class User extends core\Controller
 		try
 		{
 			$views        = new core\View();
-			$views->users = models\User::getAll();
+			$views->users = models\User::getAll( [ 'id', 'login', 'password', 'email', 'phone' ] );
 			$views->display( 'user\user.php' );
 		}
-		catch(lib\Exception404 $exp)
+		catch( lib\Exception404 $exp )
 		{
 			$err = new lib\Error( $exp->getMessage(), 400 );
 			$err->show();
